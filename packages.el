@@ -50,3 +50,5 @@
 ;(unpin! t)
 (package! nvm)
 (package! vue-mode)
+(package! tree-sitter)
+(package! tree-sitter-langs)
