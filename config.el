@@ -21,6 +21,8 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "Hack Nerd Font" :size 12 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "Hack Nerd Font" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -41,18 +43,15 @@
 
 
 ;; vterm font
-(defface nerd-icons-font
-  '((t :family "Hack Nerd Font"))
-  "Hack Nerd"
-  :group 'basic-faces)
-(add-hook
- 'vterm-mode-hook
- (lambda ()
-   (set (make-local-variable 'buffer-face-mode-face) 'nerd-icons-font)
-   (buffer-face-mode t)))
-
-
-
+;; (defface nerd-icons-font
+;;   '((t :family "Hack Nerd Font"))
+;;   "Hack Nerd"
+;;   :group 'basic-faces)
+;; (add-hook
+;;  'vterm-mode-hook
+;;  (lambda ()
+;;    (set (make-local-variable 'buffer-face-mode-face) 'nerd-icons-font)
+;;    (buffer-face-mode t)))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -79,9 +78,15 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(add-hook 'vue-mode-hook #'lsp!)
+;; (add-hook 'vue-mode-hook #'lsp!)
+(use-package! lsp-volar)
 (use-package! tree-sitter
 :config
 (require 'tree-sitter-langs)
 (global-tree-sitter-mode)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+;; change tabs into 4 spaces
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
